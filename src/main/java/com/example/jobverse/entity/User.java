@@ -63,5 +63,9 @@ public class User
     private JobSeekerProfile jobSeekerProfile;
 
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Company company;
+
+
 
 }
