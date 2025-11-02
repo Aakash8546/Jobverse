@@ -93,5 +93,17 @@ public class User
     private Set<BatchProperties.Job> savedJobs = new HashSet<>();
 
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "saved_posts",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "post_id")
+    )
+    private Set<Post> savedPosts = new HashSet<>();
 
+    public enum UserRole {
+        JOB_SEEKER,
+        JOB_GIVER,
+        ADMIN
+    }
 }
