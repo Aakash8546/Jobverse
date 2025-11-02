@@ -1,26 +1,32 @@
-package com.jobplatform.entity;
+package com.example.jobverse.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.boot.autoconfigure.batch.BatchProperties;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class User
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true, length = 100)
+    @Email
     private String email;
 
     @Column(nullable = false)
@@ -37,7 +43,7 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private UserRole role; // JOB_SEEKER or JOB_GIVER
+    private UserRole role; // ya to jpbseeker ya jobggiver
 
     @Column(nullable = false)
     private Boolean isActive = true;
@@ -51,5 +57,11 @@ public class User {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private JobSeekerProfile jobSeekerProfile;
+
+
+
 }
-]
