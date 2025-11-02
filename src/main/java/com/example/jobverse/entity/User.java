@@ -67,5 +67,9 @@ public class User
     private Company company;
 
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Post> posts = new HashSet<>();
+
+
 
 }
