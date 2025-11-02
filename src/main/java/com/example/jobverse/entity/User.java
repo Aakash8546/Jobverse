@@ -84,4 +84,14 @@ public class User
     private Set<Company> followedCompanies = new HashSet<>();
 
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "saved_jobs",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "job_id")
+    )
+    private Set<BatchProperties.Job> savedJobs = new HashSet<>();
+
+
+
 }
