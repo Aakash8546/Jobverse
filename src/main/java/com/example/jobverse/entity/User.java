@@ -75,5 +75,13 @@ public class User
     private Set<JobApplication> applications = new HashSet<>();
 
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_company_follows",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "company_id")
+    )
+    private Set<Company> followedCompanies = new HashSet<>();
+
 
 }
