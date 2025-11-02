@@ -71,5 +71,9 @@ public class User
     private Set<Post> posts = new HashSet<>();
 
 
+    @OneToMany(mappedBy = "jobSeeker", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<JobApplication> applications = new HashSet<>();
+
+
 
 }
