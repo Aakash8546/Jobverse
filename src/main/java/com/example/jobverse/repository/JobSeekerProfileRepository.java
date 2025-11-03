@@ -20,6 +20,7 @@ public interface JobSeekerProfileRepository extends JpaRepository<JobSeekerProfi
     @Query("SELECT p FROM JobSeekerProfile p WHERE " +
             "LOWER(p.headline) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
             "LOWER(p.bio) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+    .
 
     Page<JobSeekerProfile> searchProfiles(@Param("keyword") String keyword, Pageable pageable);
 }
